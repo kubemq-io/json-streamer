@@ -1,0 +1,10 @@
+version: '3'
+
+vars:
+  BINARY_NAME: player
+  VERSION: v0.1.0
+tasks:
+  default:
+    cmds:
+      - go build -o "{{.BINARY_NAME}}.exe" -ldflags "-X main.version={{.VERSION}}"
+
