@@ -18,7 +18,7 @@ var rootCmd = &cobra.Command{
 
 func Execute(args []string) error {
 	cfg := config.NewConfig()
-	rootCmd.PersistentFlags().StringVarP(&cfg.Address, "address", "a", "kubmq-cluster.kubemq:50000", "kubemq server address")
+	rootCmd.PersistentFlags().StringVarP(&cfg.Address, "address", "a", "kubemq-cluster-grpc.kubemq:50000", "kubemq server address")
 	rootCmd.PersistentFlags().StringVarP(&cfg.Queue, "queue", "q", "songs", "kubemq queue name")
 	rootCmd.PersistentFlags().StringVarP(&cfg.Table, "table", "t", "songs", "sql table name to insert")
 	rootCmd.PersistentFlags().IntVarP(&cfg.Interval, "interval", "i", 1, "new song play interval")

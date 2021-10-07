@@ -49,6 +49,7 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("invalid kubemq address format")
 	}
 	c.host = parts[0]
+	fmt.Println(c.Address)
 	port, err := strconv.ParseInt(parts[1], 10, 64)
 	if err != nil {
 		return err

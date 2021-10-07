@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: player-demo
+  namespace: kubemq
+  labels:
+    app:  player-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: player-demo
+  template:
+    metadata:
+      labels:
+        app: player-demo
+    spec:
+      containers:
+        - name: player-demo
+          image: kubemq/player-demo:v0.1.1
+          args: ["-a","kubemq-cluster-grpc.kubemq:50000","-q","songs","-t","songs", "-i", "1"]

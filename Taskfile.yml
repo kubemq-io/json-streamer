@@ -2,9 +2,23 @@ version: '3'
 
 vars:
   BINARY_NAME: player
-  VERSION: v0.1.0
+  VERSION: v0.1.1
 tasks:
   default:
     cmds:
       - go build -o "{{.BINARY_NAME}}.exe" -ldflags "-X main.version={{.VERSION}}"
+  docker:
+    env:
+      GOOS: linux
+      GOARCH: amd64
+    cmds:
+      - docker build --build-arg VERSION={{.VERSION}} . -t kubemq/player-demo:{{.VERSION}}
+      - docker tag kubemq/player-demo:{{.VERSION}} kubemq/player-demo:latest
+  pushdocker:
+    cmds:
+      - docker push kubemq/player-demo:{{.VERSION}}
+      - docker push kubemq/player-demo:latest
+  rundocker:
+    cmds:
+      - docker run -it --rm  kubemq/player-demo:{{.VERSION}} "-a localhost:50000" "-q asdas"
 
